@@ -1,0 +1,36 @@
+strict graph {
+
+
+	"b" [  weight=0 ];
+
+	"b" -- "d" [ color="red",  weight=0 ];
+
+	"b" -- "c" [ color="green",  weight=0 ];
+
+	"b" -- "a" [ color="red",  weight=0 ];
+
+	"c" [  weight=0 ];
+
+	"c" -- "a" [ color="red",  weight=0 ];
+
+	"c" -- "b" [ color="green",  weight=0 ];
+
+	"c" -- "d" [ color="red",  weight=0 ];
+
+	"d" [  weight=0 ];
+
+	"d" -- "c" [ color="red",  weight=0 ];
+
+	"d" -- "b" [ color="red",  weight=0 ];
+
+	"d" -- "a" [ color="green",  weight=0 ];
+
+	"a" [  weight=0 ];
+
+	"a" -- "b" [ color="red",  weight=0 ];
+
+	"a" -- "c" [ color="red",  weight=0 ];
+
+	"a" -- "d" [ color="green",  weight=0 ];
+
+}
