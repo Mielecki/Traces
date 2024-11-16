@@ -1,6 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/Mielecki/Traces/internal/graph"
+	"github.com/Mielecki/Traces/internal/sets"
+)
 
 func main() {
 	input := []string{
@@ -11,8 +16,9 @@ func main() {
 	}
 	sigma := []rune{'a', 'b', 'c', 'd'}
 
-	var sets Sets
-	err := sets.Initialize(input, sigma)
+	word := "baadcb"
+
+	sets, err := sets.New(input, sigma)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
@@ -20,5 +26,16 @@ func main() {
 
 	fmt.Println(sets.String())
 
-	sets.GenerateGraph()
+	g, _ := graph.ParseSets(sets)
+
+	g.ToDot()
+
+	dg, err := g.NewDiekertGraph(word)
+	if err != nil {
+		return
+	}
+
+	fmt.Println(dg)
+
+	dg.ToDot()
 }
