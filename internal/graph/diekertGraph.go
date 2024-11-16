@@ -2,10 +2,16 @@ package graph
 
 import "slices"
 
-func (graph Graph) NewDiekertGraph(wordInput string) (Graph, error) {
-	diekertGraph := Graph{
-		adjacencyList: make(map[vertex][]vertex),
-		directed:      true,
+type DiekertGraph struct {
+	Graph
+}
+
+func (graph Graph) NewDiekertGraph(wordInput string) (DiekertGraph, error) {
+	diekertGraph := DiekertGraph{
+		Graph{
+			adjacencyList: make(map[vertex][]vertex),
+			directed:      true,
+		},
 	}
 
 	word := []rune(wordInput)

@@ -4,7 +4,11 @@ import (
 	"sort"
 )
 
-func (g *Graph) dfs(v vertex, visited map[vertex]bool) {
+type HasseDiagram struct {
+	DiekertGraph
+}
+
+func (g *DiekertGraph) dfs(v vertex, visited map[vertex]bool) {
 	visited[v] = true
 	for _, neighbor := range g.adjacencyList[v] {
 		if !visited[neighbor] {
@@ -13,10 +17,14 @@ func (g *Graph) dfs(v vertex, visited map[vertex]bool) {
 	}
 }
 
-func (graph *Graph) NewHasseDiagram() Graph {
-	reducedGraph := Graph{
-		adjacencyList: make(map[vertex][]vertex),
-		directed:      true,
+func (graph *DiekertGraph) NewHasseDiagram() HasseDiagram {
+	reducedGraph := HasseDiagram{
+		DiekertGraph{
+			Graph{
+				adjacencyList: make(map[vertex][]vertex),
+				directed:      true,
+			},
+		},
 	}
 
 	vertices := []vertex{}
@@ -49,7 +57,7 @@ func (graph *Graph) NewHasseDiagram() Graph {
 	return reducedGraph
 }
 
-func (g *Graph) GetFNF() string {
+func (g *HasseDiagram) GetFNF() string {
 	times := make(map[vertex]int)
 	queue := []vertex{}
 
