@@ -9,14 +9,16 @@ import (
 
 func main() {
 	input := []string{
-		"x := x + y",
+		"x := x + 1",
 		"y := y + 2z",
 		"x := 3x + z",
-		"z := y - z",
+		"w := w + v",
+		"z := y − z",
+		"v := x + v",
 	}
-	sigma := []rune{'a', 'b', 'c', 'd'}
+	sigma := []rune{'a', 'b', 'c', 'd', 'e', 'f'}
 
-	word := "baadcb"
+	word := "acdcfbbe"
 
 	sets, err := sets.New(input, sigma)
 	if err != nil {
@@ -26,19 +28,16 @@ func main() {
 
 	fmt.Println(sets.String())
 
-	g, _ := graph.ParseSets(sets)
+	gt, _ := graph.ParseSets(sets)
 
-	g.ToDot()
+	fmt.Println("graf zaleznosci: \n", gt.ToDot())
 
-	dg, err := g.NewDiekertGraph(word)
+	dg, err := gt.NewDiekertGraph(word)
 	if err != nil {
 		return
 	}
 
-	fmt.Println(dg)
+	fmt.Println("graf diekerta: \n", dg.ToDot())
 
-	dg.ToDot()
-
-	fmt.Println(dg.Minimize())
-	dg.Minimize().ToDot()
+	fmt.Println("hassego diagram: \n", dg.Minimize().ToDot())
 }

@@ -45,3 +45,31 @@ func (graph *Graph) Minimize() Graph {
 
 	return reducedGraph
 }
+
+func (g *Graph) BFS(start rune) map[vertex]int {
+	source := vertex{
+		name: start,
+		index: 0,
+	}
+
+	times := make(map[vertex]int)
+	for v := range g.adjacencyList {
+		times[v] = -1
+	}
+
+	times[source] = 0
+
+	queue := []vertex{source}
+
+	for len(queue) > 0 {
+		current := queue[0]
+		queue = queue[1:]
+
+		for _, neighbor := range g.adjacencyList[current] {
+			times[neighbor] = times[current] + 1
+			queue = append(queue, neighbor)
+		}
+	}
+
+	return times
+}

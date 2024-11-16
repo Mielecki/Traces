@@ -1,8 +1,6 @@
 package graph
 
 import (
-	"fmt"
-
 	"github.com/Mielecki/Traces/internal/sets"
 )
 
@@ -32,7 +30,7 @@ func ParseSets(sets sets.Sets) (Graph, error) {
 	return newGraph, nil
 }
 
-func (graph Graph) ToDot() error {
+func (graph Graph) ToDot() string {
 	relation := "--"
 	keyword := "graph"
 	
@@ -60,9 +58,7 @@ func (graph Graph) ToDot() error {
 
 	result = result + "}"
 
-	fmt.Println(result)
-
-	return nil
+	return result
 }
 
 func (graph *Graph) removeEdge(start vertex, end vertex) {
