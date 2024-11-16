@@ -3,7 +3,7 @@ package graph
 import "strconv"
 
 type vertex struct {
-	name rune
+	name  rune
 	index int
 }
 

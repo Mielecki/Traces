@@ -6,13 +6,13 @@ import (
 
 type Graph struct {
 	adjacencyList map[vertex][]vertex
-	directed bool
+	directed      bool
 }
 
 func ParseSets(sets sets.Sets, dependent bool) (Graph, error) {
 	newGraph := Graph{
 		adjacencyList: make(map[vertex][]vertex),
-		directed: false,
+		directed:      false,
 	}
 
 	set := sets.Dependent
@@ -23,11 +23,11 @@ func ParseSets(sets sets.Sets, dependent bool) (Graph, error) {
 
 	for pair := range set {
 		v1 := vertex{
-			name: pair.First,
+			name:  pair.First,
 			index: 0,
 		}
 		v2 := vertex{
-			name: pair.Second,
+			name:  pair.Second,
 			index: 0,
 		}
 		newGraph.adjacencyList[v1] = append(newGraph.adjacencyList[v1], v2)
@@ -39,7 +39,7 @@ func ParseSets(sets sets.Sets, dependent bool) (Graph, error) {
 func (graph Graph) ToDot() string {
 	relation := "--"
 	keyword := "graph"
-	
+
 	if graph.directed {
 		relation = "->"
 		keyword = "digraph"

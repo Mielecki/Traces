@@ -4,7 +4,6 @@ import (
 	"sort"
 )
 
-
 func (g *Graph) dfs(v vertex, visited map[vertex]bool) {
 	visited[v] = true
 	for _, neighbor := range g.adjacencyList[v] {
@@ -17,11 +16,11 @@ func (g *Graph) dfs(v vertex, visited map[vertex]bool) {
 func (graph *Graph) NewHasseDiagram() Graph {
 	reducedGraph := Graph{
 		adjacencyList: make(map[vertex][]vertex),
-		directed: true,
+		directed:      true,
 	}
 
 	vertices := []vertex{}
-	
+
 	for k, v := range graph.adjacencyList {
 		reducedGraph.adjacencyList[k] = v
 		vertices = append(vertices, k)
@@ -39,7 +38,7 @@ func (graph *Graph) NewHasseDiagram() Graph {
 
 	for _, u := range vertices {
 		for _, v := range reducedGraph.adjacencyList[u] {
-			for w, _ := range reachable[u] {
+			for w := range reachable[u] {
 				if w != u && w != v && reachable[u][v] && reachable[w][v] {
 					reducedGraph.removeEdge(u, v)
 				}
@@ -59,7 +58,6 @@ func (g *Graph) GetFNF() string {
 		times[v] = 0
 	}
 
-
 	for len(queue) > 0 {
 		current := queue[0]
 		queue = queue[1:]
@@ -74,7 +72,6 @@ func (g *Graph) GetFNF() string {
 	for key, value := range times {
 		grouped[value] = append(grouped[value], string(key.name))
 	}
-
 
 	result := ""
 	for i := range len(grouped) {

@@ -5,7 +5,7 @@ import "slices"
 func (graph Graph) NewDiekertGraph(wordInput string) (Graph, error) {
 	diekertGraph := Graph{
 		adjacencyList: make(map[vertex][]vertex),
-		directed: true,
+		directed:      true,
 	}
 
 	word := []rune(wordInput)
@@ -15,11 +15,11 @@ func (graph Graph) NewDiekertGraph(wordInput string) (Graph, error) {
 	for v := range graph.adjacencyList {
 		indices[v.name] = -1
 	}
-	
+
 	for _, c := range word {
 		indices[c] += 1
 		vertices = append(vertices, vertex{
-			name: c,
+			name:  c,
 			index: indices[c],
 		})
 	}
@@ -30,12 +30,11 @@ func (graph Graph) NewDiekertGraph(wordInput string) (Graph, error) {
 		for j := i + 1; j < len(vertices); j++ {
 			v2 := vertices[j]
 
-			if slices.Contains(graph.adjacencyList[
-				vertex{
-				name: v1.name,
+			if slices.Contains(graph.adjacencyList[vertex{
+				name:  v1.name,
 				index: 0,
 			}], vertex{
-				name: v2.name,
+				name:  v2.name,
 				index: 0,
 			}) {
 				diekertGraph.adjacencyList[v1] = append(diekertGraph.adjacencyList[v1], v2)

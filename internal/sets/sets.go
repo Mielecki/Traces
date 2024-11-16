@@ -8,35 +8,35 @@ import (
 )
 
 type dataItem struct {
-	symbol rune
+	symbol   rune
 	modified rune
-	read []rune
+	read     []rune
 }
 
 type Pair struct {
-	First rune
+	First  rune
 	Second rune
 }
 
 type Sets struct {
-	Sigma []rune
-	Data []dataItem
-	Dependent map[Pair]bool
+	Sigma       []rune
+	Data        []dataItem
+	Dependent   map[Pair]bool
 	Independent map[Pair]bool
 }
 
 func New(input []string, sigma []rune) (Sets, error) {
 	newSets := Sets{}
-	
+
 	newSets.Sigma = make([]rune, 0)
 	newSets.Sigma = append(newSets.Sigma, sigma...)
 
 	if err := newSets.parseInput(input); err != nil {
-		return Sets{},err
+		return Sets{}, err
 	}
 
 	if err := newSets.createSets(); err != nil {
-		return Sets{},err
+		return Sets{}, err
 	}
 
 	return newSets, nil
@@ -58,10 +58,10 @@ func (sets *Sets) parseInput(input []string) error {
 			return errors.New("invalid task format")
 		}
 
-		parsedInput = append(parsedInput, dataItem {
-			symbol: sets.Sigma[i],
+		parsedInput = append(parsedInput, dataItem{
+			symbol:   sets.Sigma[i],
 			modified: parsedItem[0],
-			read: parsedItem[1:],
+			read:     parsedItem[1:],
 		})
 	}
 
