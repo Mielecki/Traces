@@ -38,4 +38,7 @@ func main() {
 	fmt.Println(dg)
 
 	dg.ToDot()
+
+	fmt.Println(dg.Minimize())
+	dg.Minimize().ToDot()
 }
