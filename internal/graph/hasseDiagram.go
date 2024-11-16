@@ -1,5 +1,9 @@
 package graph
 
+import (
+	"sort"
+)
+
 
 func (g *Graph) dfs(v vertex, visited map[vertex]bool) {
 	visited[v] = true
@@ -10,7 +14,7 @@ func (g *Graph) dfs(v vertex, visited map[vertex]bool) {
 	}
 }
 
-func (graph *Graph) Minimize() Graph {
+func (graph *Graph) NewHasseDiagram() Graph {
 	reducedGraph := Graph{
 		adjacencyList: make(map[vertex][]vertex),
 		directed: true,
@@ -46,20 +50,15 @@ func (graph *Graph) Minimize() Graph {
 	return reducedGraph
 }
 
-func (g *Graph) BFS(start rune) map[vertex]int {
-	source := vertex{
-		name: start,
-		index: 0,
-	}
-
+func (g *Graph) GetFNF() string {
 	times := make(map[vertex]int)
+	queue := []vertex{}
+
 	for v := range g.adjacencyList {
-		times[v] = -1
+		queue = append(queue, v)
+		times[v] = 0
 	}
 
-	times[source] = 0
-
-	queue := []vertex{source}
 
 	for len(queue) > 0 {
 		current := queue[0]
@@ -71,5 +70,24 @@ func (g *Graph) BFS(start rune) map[vertex]int {
 		}
 	}
 
-	return times
+	grouped := make(map[int][]string)
+	for key, value := range times {
+		grouped[value] = append(grouped[value], string(key.name))
+	}
+
+
+	result := ""
+	for i := range len(grouped) {
+		sort.Strings(grouped[i])
+
+		result = result + "("
+
+		for _, c := range grouped[i] {
+			result = result + c
+		}
+
+		result = result + ")"
+	}
+
+	return result
 }

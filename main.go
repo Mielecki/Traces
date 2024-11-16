@@ -28,16 +28,24 @@ func main() {
 
 	fmt.Println(sets.String())
 
-	gt, _ := graph.ParseSets(sets)
+	dependentGraph, _ := graph.ParseSets(sets, true)
 
-	fmt.Println("graf zaleznosci: \n", gt.ToDot())
+	fmt.Println("Graf zaleznosci: \n", dependentGraph.ToDot())
 
-	dg, err := gt.NewDiekertGraph(word)
+	independentGraph, _ := graph.ParseSets(sets, false)
+
+	fmt.Println("Graf niezaleznosci: \n", independentGraph.ToDot())
+
+	diekertGraph, err := dependentGraph.NewDiekertGraph(word)
 	if err != nil {
 		return
 	}
 
-	fmt.Println("graf diekerta: \n", dg.ToDot())
+	fmt.Println("Graf Diekerta: \n", diekertGraph.ToDot())
 
-	fmt.Println("hassego diagram: \n", dg.Minimize().ToDot())
+	hasseDiagram := diekertGraph.NewHasseDiagram()
+
+	fmt.Println("Diagram Hassego: \n", hasseDiagram.ToDot())
+
+	fmt.Println("FNF(w) = ", hasseDiagram.GetFNF())
 }
