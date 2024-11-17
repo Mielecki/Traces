@@ -1,8 +1,10 @@
-x := x + y
+x := x + 1
 y := y + 2z
 x := 3x + z
+w := w + v
 z := y − z
+v := x + v
 
-A = {a, b, c, d}
+A = {a, b, c, d, e, f}
 
-w = baadcb
+w = acdcfbbe
