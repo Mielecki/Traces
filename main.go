@@ -8,21 +8,16 @@ import (
 )
 
 func main() {
-	input := []string{
-		"x := x + 1",
-		"y := y + 2z",
-		"x := 3x + z",
-		"w := w + v",
-		"z := y − z",
-		"v := x + v",
-	}
-	sigma := []rune{'a', 'b', 'c', 'd', 'e', 'f'}
-
-	word := "acdcfbbe"
-
-	sets, err := sets.New(input, sigma)
+	input, err := parseFile("./example.txt")
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Println(err)
+		return
+	}
+
+
+	sets, err := sets.New(input.Tasks, input.Sigma)
+	if err != nil {
+		fmt.Println(err)
 		return
 	}
 
@@ -36,8 +31,9 @@ func main() {
 
 	fmt.Println("Graf niezaleznosci: \n", independentGraph.ToDot())
 
-	diekertGraph, err := dependentGraph.NewDiekertGraph(word)
+	diekertGraph, err := dependentGraph.NewDiekertGraph(input.Word)
 	if err != nil {
+		fmt.Println(err)
 		return
 	}
 

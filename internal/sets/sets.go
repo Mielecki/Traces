@@ -21,8 +21,8 @@ type Pair struct {
 type Sets struct {
 	Sigma       []rune
 	Data        []dataItem
-	Dependent   map[Pair]bool
-	Independent map[Pair]bool
+	Dependent   map[Pair]struct{}
+	Independent map[Pair]struct{}
 }
 
 func New(input []string, sigma []rune) (Sets, error) {
@@ -70,23 +70,23 @@ func (sets *Sets) parseInput(input []string) error {
 }
 
 func (sets *Sets) createSets() error {
-	dependent := make(map[Pair]bool)
-	independent := make(map[Pair]bool)
+	dependent := make(map[Pair]struct{})
+	independent := make(map[Pair]struct{})
 
 	for i := 0; i < len(sets.Data); i++ {
 		itemI := sets.Data[i]
 
-		dependent[Pair{itemI.symbol, itemI.symbol}] = true
+		dependent[Pair{itemI.symbol, itemI.symbol}] = struct{}{}
 
 		for j := i + 1; j < len(sets.Data); j++ {
 			itemJ := sets.Data[j]
 
 			if slices.Contains(itemJ.read, itemI.modified) || slices.Contains(itemI.read, itemJ.modified) {
-				dependent[Pair{itemI.symbol, itemJ.symbol}] = true
-				dependent[Pair{itemJ.symbol, itemI.symbol}] = true
+				dependent[Pair{itemI.symbol, itemJ.symbol}] = struct{}{}
+				dependent[Pair{itemJ.symbol, itemI.symbol}] = struct{}{}
 			} else {
-				independent[Pair{itemI.symbol, itemJ.symbol}] = true
-				independent[Pair{itemJ.symbol, itemI.symbol}] = true
+				independent[Pair{itemI.symbol, itemJ.symbol}] = struct{}{}
+				independent[Pair{itemJ.symbol, itemI.symbol}] = struct{}{}
 			}
 		}
 	}
