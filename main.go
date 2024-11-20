@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-	// Creating a Sets structure to store dependency/independency sets
+	// Creating a Sets structure to store dependency/independence sets
 	sets, err := sets.New(input.Tasks, input.Sigma)
 	if err != nil {
 		fmt.Println(err)

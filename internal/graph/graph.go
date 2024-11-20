@@ -4,17 +4,20 @@ import (
 	"github.com/Mielecki/Traces/internal/sets"
 )
 
+// Structure to store graph using adjacency lists
 type Graph struct {
 	adjacencyList map[vertex][]vertex
 	directed      bool
 }
 
+// Function to initialize a new graph by parsing dependency/independence set
 func ParseSets(set map[sets.Pair]struct{}) Graph {
 	newGraph := Graph{
 		adjacencyList: make(map[vertex][]vertex),
-		directed:      false,
+		directed:      false, // The dependency/independence graph is undirected
 	}
 
+	// Adding edges to the adjacency list based on the given set
 	for pair := range set {
 		v1 := vertex{
 			name:  pair.First,
@@ -30,6 +33,7 @@ func ParseSets(set map[sets.Pair]struct{}) Graph {
 	return newGraph
 }
 
+// Function to parse Graph structure to .dot format for Graphviz visualization
 func (graph Graph) ToDot() string {
 	relation := "--"
 	keyword := "graph"
@@ -61,6 +65,7 @@ func (graph Graph) ToDot() string {
 	return result
 }
 
+// Function to remove an edge from the graph
 func (graph *Graph) removeEdge(start vertex, end vertex) {
 	for i, v := range graph.adjacencyList[start] {
 		if v == end {

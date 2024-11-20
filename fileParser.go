@@ -34,6 +34,7 @@ func parseFile(path string) (Input, error) {
 	// state 0 -> adding tasks
 	// state 1 -> adding the sigma set
 	// state 2 -> adding the word
+	// state -1 -> nothing
 	state := 0
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -59,7 +60,7 @@ func parseFile(path string) (Input, error) {
 		case 2:
 			if line != "" && line[0] == 'w' {
 				input.Word = line[4:]
-				break
+				state = -1
 			}
 		}
 	}
