@@ -7,24 +7,28 @@ import (
 	"strings"
 )
 
+// Structure to store a single task data
 type dataItem struct {
-	symbol   rune
-	modified rune
-	read     []rune
+	symbol   rune	// The symbol representing the task from the sigma set
+	modified rune   // The variable that the task modifies
+	read     []rune // Variables that are read by the task
 }
 
+// Structure to store represent a relation between two tasks
 type Pair struct {
 	First  rune
 	Second rune
 }
 
+// Structure to store on which other algorithms will work
 type Sets struct {
-	Sigma       []rune
-	Data        []dataItem
-	Dependent   map[Pair]struct{}
-	Independent map[Pair]struct{}
+	Sigma       []rune			  // The sigma set
+	Data        []dataItem		  // A slice of task data
+	Dependent   map[Pair]struct{} // The set of depenedent relations
+	Independent map[Pair]struct{} // The set of independent relations
 }
 
+// Function to initalize a new Sets structure
 func New(input []string, sigma []rune) (Sets, error) {
 	newSets := Sets{}
 
