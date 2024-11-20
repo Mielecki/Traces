@@ -12,7 +12,7 @@ The project computes and returns:
 
 1. The dependency set: pairs of tasks that are dependent on each other.
 2. The independence set: pairs of tasks that can execute independently.
-3. Graphs in `.gv` format:
+3. Graphs in `.gv` format in the `output` folder:
 * Dependency graph,
 * independence graph,
 * Diekert graph,
@@ -40,6 +40,13 @@ w = ...
 ```
 
 2. Run the program:
+
 ```
 ./Traces
+```
+
+3. Run the [Graphviz](https://graphviz.org/download/) for each `.gv` file in the `output` directory:
+
+```
+./graphs.sh
 ```

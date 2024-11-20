@@ -1,0 +1,10 @@
+graph graphname {
+a0 [label="a"]
+d0 [label="d"]
+c0 [label="c"]
+b0 [label="b"]
+a0 -- c0;
+a0 -- b0;
+c0 -- d0;
+b0 -- d0;
+}
