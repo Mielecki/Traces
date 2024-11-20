@@ -9,16 +9,10 @@ type Graph struct {
 	directed      bool
 }
 
-func ParseSets(sets sets.Sets, dependent bool) (Graph, error) {
+func ParseSets(set map[Pair]struct{}) Graph {
 	newGraph := Graph{
 		adjacencyList: make(map[vertex][]vertex),
 		directed:      false,
-	}
-
-	set := sets.Dependent
-
-	if !dependent {
-		set = sets.Independent
 	}
 
 	for pair := range set {

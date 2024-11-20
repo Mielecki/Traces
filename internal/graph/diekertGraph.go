@@ -6,7 +6,7 @@ type DiekertGraph struct {
 	Graph
 }
 
-func (graph Graph) NewDiekertGraph(wordInput string) (DiekertGraph, error) {
+func (graph Graph) NewDiekertGraph(wordInput string) DiekertGraph {
 	diekertGraph := DiekertGraph{
 		Graph{
 			adjacencyList: make(map[vertex][]vertex),
