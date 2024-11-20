@@ -46,8 +46,6 @@ func parseFile(path string) (Input, error) {
 				}
 			} else if checkLetter(line[0]) {
 				input.Tasks = append(input.Tasks, line)
-			} else {
-				return Input{}, errors..New("invalid input format: ")
 			}
 		case 1:
 			if line != "" && line[0] == 'A' {

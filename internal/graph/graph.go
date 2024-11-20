@@ -9,7 +9,7 @@ type Graph struct {
 	directed      bool
 }
 
-func ParseSets(set map[Pair]struct{}) Graph {
+func ParseSets(set map[sets.Pair]struct{}) Graph {
 	newGraph := Graph{
 		adjacencyList: make(map[vertex][]vertex),
 		directed:      false,
@@ -27,7 +27,7 @@ func ParseSets(set map[Pair]struct{}) Graph {
 		newGraph.adjacencyList[v1] = append(newGraph.adjacencyList[v1], v2)
 	}
 
-	return newGraph, nil
+	return newGraph
 }
 
 func (graph Graph) ToDot() string {

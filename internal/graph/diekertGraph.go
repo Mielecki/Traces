@@ -48,5 +48,5 @@ func (graph Graph) NewDiekertGraph(wordInput string) DiekertGraph {
 		}
 	}
 
-	return diekertGraph, nil
+	return diekertGraph
 }

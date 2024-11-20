@@ -26,13 +26,13 @@ func main() {
 	fmt.Println(sets.String())
 
 	// Creating a dependency graph from the set of dependent tasks
-	dependencyGraph := graph.ParseSets(sets.dependent)
+	dependencyGraph := graph.ParseSets(sets.Dependent)
 
 	// Printing the dependency graph in a .dot format for Graphviz visualization
 	fmt.Println("Graf zaleznosci: \n", dependencyGraph.ToDot())
 
 	// Creating an independence graph from the set of independent tasks
-	independenceGraph := graph.ParseSets(sets.independent)
+	independenceGraph := graph.ParseSets(sets.Independent)
 
 	// Printing the independence graph in a .dot format for Graphviz visualization
 	fmt.Println("Graf niezaleznosci: \n", independenceGraph.ToDot())
