@@ -10,11 +10,11 @@ This project, developed for a course on concurrency theory, analizes relationshi
 
 The project computes and returns:
 
-1. The dependence relation: pairs of tasks that are dependent on each other.
-2. The independence relation: pairs of tasks that can execute independently.
-3. Graphical representations in `.gv` format:
+1. The dependency set: pairs of tasks that are dependent on each other.
+2. The independence set: pairs of tasks that can execute independently.
+3. Graphs in `.gv` format:
 * Dependency graph,
-* Independency graph,
+* independence graph,
 * Diekert graph,
 * Hasse diagram.
 
