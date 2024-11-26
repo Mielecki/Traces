@@ -1,8 +1,8 @@
 graph graphname {
-d0 [label="d"]
-c0 [label="c"]
-a0 [label="a"]
 b0 [label="b"]
+c0 [label="c"]
+d0 [label="d"]
+a0 [label="a"]
 a0 -- b0;
 a0 -- c0;
 b0 -- d0;

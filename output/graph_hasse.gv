@@ -1,33 +1,15 @@
 digraph graphname {
-b2 [label="b"]
-c1 [label="c"]
-a3 [label="a"]
-c2 [label="c"]
-d1 [label="d"]
 d0 [label="d"]
-a4 [label="a"]
-a1 [label="a"]
 c0 [label="c"]
-a2 [label="a"]
-a0 [label="a"]
 b1 [label="b"]
 b0 [label="b"]
-a0 -> a1;
-b1 -> a2;
-b0 -> a0;
-b0 -> d0;
+a0 [label="a"]
+a1 [label="a"]
 a1 -> c0;
 a1 -> b1;
-c0 -> a2;
-a2 -> b2;
-a2 -> c1;
-d1 -> c2;
 d0 -> c0;
 d0 -> b1;
-a4 -> c2;
-b2 -> a3;
-b2 -> d1;
-c1 -> a3;
-c1 -> d1;
-a3 -> a4;
+b0 -> a0;
+b0 -> d0;
+a0 -> a1;
 }

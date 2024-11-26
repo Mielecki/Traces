@@ -5,4 +5,4 @@ z := y − z
 
 A = {a, b, c, d}
 
-w = baadcbabcaadc
+w = baadcb

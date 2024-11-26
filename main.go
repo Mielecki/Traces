@@ -75,5 +75,5 @@ func main() {
 	}
 
 	// Printing the Foaty Normal Form obtained from Hasse Diagram
-	fmt.Println("FNF(w) = ", hasseDiagram.GetFNF())
+	fmt.Println("FNF(w) =", hasseDiagram.GetFNF())
 }

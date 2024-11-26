@@ -107,13 +107,13 @@ func (sets *Sets) createSets() error {
 func (sets *Sets) String() string {
 	dependentStr := ""
 	for p := range sets.Dependent {
-		dependentStr += fmt.Sprintf("(%c, %c) ", p.First, p.Second)
+		dependentStr += fmt.Sprintf("(%c, %c),", p.First, p.Second)
 	}
 
 	independentStr := ""
 	for p := range sets.Independent {
-		independentStr += fmt.Sprintf("(%c, %c) ", p.First, p.Second)
+		independentStr += fmt.Sprintf("(%c, %c),", p.First, p.Second)
 	}
 
-	return fmt.Sprintf("D = {%s}\nI = {%s}", dependentStr, independentStr)
+	return fmt.Sprintf("D = {%s}\nI = {%s}", dependentStr[:len(dependentStr)-1], independentStr[:len(independentStr)-1])
 }
