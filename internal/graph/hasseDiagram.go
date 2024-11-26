@@ -53,9 +53,15 @@ func (graph *DiekertGraph) NewHasseDiagram() HasseDiagram {
 
 	// For each edge u -> v, check if the path u -> w -> v exists. If so, remove the u -> v edge
 	for _, u := range vertices {
+
+		adjacencyListCopy := make(map[vertex]struct{})
 		for _, v := range reducedGraph.adjacencyList[u] {
+			adjacencyListCopy[v] = struct{}{}
+		}
+
+		for v := range adjacencyListCopy {
 			for w := range reachable[u] {
-				if w != u && w != v && reachable[u][w] && reachable[w][v] {
+				if w != u && w != v && reachable[w][v] {
 					reducedGraph.removeEdge(u, v)
 				}
 			}
